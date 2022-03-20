@@ -10,7 +10,13 @@ import type { MetaFunction } from "remix";
 import styles from "~/styles/app.css";
 
 export function links() {
-  return [{ rel: "stylesheet", href: styles }];
+  return [
+    { rel: "stylesheet", href: styles },
+    {
+      rel: "stylesheet",
+      href: "https://unpkg.com/dracula-prism/dist/css/dracula-prism.min.css",
+    },
+  ];
 }
 
 export const meta: MetaFunction = () => ({
@@ -30,6 +36,7 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <Scripts />
+        <script src="/prism.js" />
         <LiveReload />
       </body>
     </html>
