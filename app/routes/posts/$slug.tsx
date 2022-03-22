@@ -3,6 +3,7 @@ import type { LoaderFunction } from "remix";
 import invariant from "tiny-invariant";
 
 import { getPost } from "~/post";
+import { useEffect } from "react";
 
 export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.slug, "expected params.slug");
@@ -11,7 +12,12 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 export default function PostSlug() {
   const post = useLoaderData();
+  useEffect(() => {
+    window.Prism.highlightAll();
+  }, []);
   return (
-    <main className="prose" dangerouslySetInnerHTML={{ __html: post.html }} />
+    <>
+      <main className="prose" dangerouslySetInnerHTML={{ __html: post.html }} />
+    </>
   );
 }
