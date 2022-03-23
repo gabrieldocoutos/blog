@@ -10,12 +10,14 @@ export default function Index() {
   const posts = useLoaderData<Post[]>();
   return (
     <main className="pt-10 px-4">
-      <h1 className="text-5xl text-slate-900 pb-4">hello, i am gabriel.</h1>
-      <h2>
+      <h1 className="text-5xl text-slate-100 pb-4">hello, i am gabriel.</h1>
+      <h2 className="text-slate-100">
         i am software developer from brazil. i am currently working for
         thoughtworks
       </h2>
-      <p>i don't know exactly what i gonna share, but here are a few posts:</p>
+      <p className="text-slate-100">
+        i don't know exactly what i gonna share, but here are a few posts:
+      </p>
       <ul>
         {posts.map((post) => (
           <li key={post.slug}>

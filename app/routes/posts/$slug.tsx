@@ -18,7 +18,7 @@ export default function PostSlug() {
   return (
     <>
       <main
-        className="prose prose-slate"
+        className="prose prose-invert"
         dangerouslySetInnerHTML={{ __html: post.html }}
       />
     </>
