@@ -17,7 +17,10 @@ export default function PostSlug() {
   }, []);
   return (
     <>
-      <main className="prose" dangerouslySetInnerHTML={{ __html: post.html }} />
+      <main
+        className="prose prose-slate"
+        dangerouslySetInnerHTML={{ __html: post.html }}
+      />
     </>
   );
 }
