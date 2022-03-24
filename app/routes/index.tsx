@@ -38,7 +38,6 @@ export const loader = async () => {
 export default function Index() {
   const { posts, repositories } =
     useLoaderData<{ posts: Post[]; repositories: any }>();
-  console.log(repositories);
   return (
     <main className="pt-10 px-4">
       <h1 className="text-5xl text-slate-100 pb-4">hello, i am gabriel.</h1>
@@ -54,6 +53,12 @@ export default function Index() {
           <li key={post.slug}>
             <Link to={`/posts/${post.slug}`}>{post.title}</Link>
           </li>
+        ))}
+      </ul>
+      <p>github repos</p>
+      <ul>
+        {repositories.map((repository: any) => (
+          <li key={repository.node.id}>{repository.node.name}</li>
         ))}
       </ul>
     </main>
