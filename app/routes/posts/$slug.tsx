@@ -10,6 +10,14 @@ export const loader: LoaderFunction = async ({ params }) => {
   return json(await getPost(params.slug));
 };
 
+declare global {
+  interface Window {
+    Prism: {
+      highlightAll: Function;
+    };
+  }
+}
+
 export default function PostSlug() {
   const post = useLoaderData();
   useEffect(() => {
