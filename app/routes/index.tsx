@@ -3,11 +3,42 @@ import { getPosts } from "~/post";
 import type { Post } from "~/post";
 
 export const loader = async () => {
-  return json(await getPosts());
+  const githubResponse = await fetch("https://api.github.com/graphql", {
+    body: JSON.stringify({
+      query: `
+      {
+        user(login: "gabrieldocoutos") {
+          repositories(first: 100, ownerAffiliations: [OWNER]) {
+            edges {
+              node {
+                id
+                name
+                url
+                description
+              }
+            }
+          }
+        }
+      }`,
+    }),
+    method: "POST",
+    headers: {
+      Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
+    },
+  });
+
+  const { data } = await githubResponse.json();
+
+  return json({
+    posts: await getPosts(),
+    repositories: data.user.repositories.edges,
+  });
 };
 
 export default function Index() {
-  const posts = useLoaderData<Post[]>();
+  const { posts, repositories } =
+    useLoaderData<{ posts: Post[]; repositories: any }>();
+  console.log(repositories);
   return (
     <main className="pt-10 px-4">
       <h1 className="text-5xl text-slate-100 pb-4">hello, i am gabriel.</h1>
